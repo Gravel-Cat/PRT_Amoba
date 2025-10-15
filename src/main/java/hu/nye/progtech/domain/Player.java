@@ -4,8 +4,8 @@ public final class Player {
     private final String name;
     private int wins;
 
-    public Player(final String name){
-        this.name=name;
+    public Player(final String name) {
+        this.name = name;
     }
 
     public void setWins(int wins) {

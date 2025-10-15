@@ -1,10 +1,11 @@
 package hu.nye.progtech.init;
 
+import java.util.Scanner;
+
 import hu.nye.progtech.domain.GameMap;
+import hu.nye.progtech.service.MoveHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Scanner;
 
 public final class MapInit {
     private static final Logger LOGGER = LoggerFactory.getLogger(MapInit.class);
@@ -15,17 +16,21 @@ public final class MapInit {
     }
 
     public GameMap readMapDetails() {
-        final int mapSize = getDetailsInInt("Please enter map size: ");
+        int mapSize = getDetailsInInt("Please enter map size (5-25):");
+        while (mapSize < 5 || mapSize > 25) {
+            mapSize = getDetailsInInt("Invalid size! Please enter map size (5-25):");
+        }
+
         final char[][] moves = new char[mapSize][mapSize];
-        for(int i=0;i<mapSize;i++){
-            for(int j=0;j<mapSize;j++){
-                moves[i][j]=' ';
+        for (int i = 1; i <= mapSize; i++) {
+            for (int j = 1; j <= mapSize; j++) {
+                MoveHandler.setMove(moves, ' ', i, j);
             }
         }
         return new GameMap(mapSize, moves);
     }
 
-    private int getDetailsInInt(final String message){
+    private int getDetailsInInt(final String message) {
         LOGGER.info(message);
         return scanner.nextInt();
     }
