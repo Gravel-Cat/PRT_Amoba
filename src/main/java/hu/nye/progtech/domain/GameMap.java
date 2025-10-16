@@ -16,8 +16,4 @@ public final class GameMap {
     public char[][] getMoves() {
         return moves;
     }
-
-    public char readMove(int row, int column) {
-        return this.moves[row][column];
-    }
 }
