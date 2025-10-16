@@ -14,8 +14,10 @@ public class MainApp {
         final GameMap gameMap = mapInit.readMapDetails();
         final MapDisplayer mapDisplayer = new MapDisplayer();
 
-        MoveHandler.setMove(gameMap.getMoves(), 'x', 5, 5);
+        while (1==1){
+            mapDisplayer.displayMap(gameMap);
+            MoveHandler.readMove(gameMap.getMoves(), gameMap.getMapSize());
+        }
 
-        mapDisplayer.displayMap(gameMap);
     }
 }
