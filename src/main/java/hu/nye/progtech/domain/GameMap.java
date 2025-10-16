@@ -2,7 +2,7 @@ package hu.nye.progtech.domain;
 
 public final class GameMap {
     private final int mapSize;
-    public final char[][] moves;
+    private final char[][] moves;
 
     public GameMap(int mapSize, char[][] moves) {
         this.mapSize = mapSize;
