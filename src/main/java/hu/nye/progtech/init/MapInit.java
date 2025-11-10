@@ -22,13 +22,13 @@ public final class MapInit {
         }
 
         final char[][] moves = new char[mapSize][mapSize];
-        for (int i = 1; i <= mapSize; i++) {
-            for (int j = 1; j <= mapSize; j++) {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
                 MoveHandler.setMove(moves, ' ', i, j);
             }
         }
 
-        int middlePoint = Math.round((float) mapSize / 2);
+        int middlePoint = Math.round((float) mapSize / 2) - 1;
         if (mapSize % 2 == 0) {
             MoveHandler.setMove(moves, 'x', middlePoint, middlePoint);
             MoveHandler.setMove(moves, 'o', middlePoint, middlePoint + 1);
