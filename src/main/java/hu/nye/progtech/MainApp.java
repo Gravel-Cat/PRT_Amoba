@@ -17,6 +17,7 @@ public class MainApp {
         while (1 == 1) {
             mapDisplayer.displayMap(gameMap);
             MoveHandler.readMove(gameMap.getMoves(), gameMap.getMapSize());
+            MoveHandler.botMove(gameMap.getMoves(), gameMap.getMapSize());
         }
     }
 }
