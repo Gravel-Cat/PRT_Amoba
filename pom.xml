@@ -116,7 +116,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
-                    <configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
+                    <configLocation>C:/Users/Juhász Benedek/Documents/programozas/PRT_Amoba/src/main/resources/checkstyle.xml</configLocation>
                 </configuration>
                 <executions>
                     <execution>
@@ -131,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.27.0</version>
+                <version>3.28.0</version>
                 <configuration>
                     <rulesets>
                         <ruleset>${basedir}/src/main/resources/pmd-ruleset.xml</ruleset>

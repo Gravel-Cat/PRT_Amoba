@@ -10,7 +10,7 @@ public class MoveHandler {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void setMove(char[][] moves, char move, int row, int column) {
-        moves[(row)][(column)] = move;
+        moves[row][column] = move;
     }
 
     public static void readMove(char[][] moves, int mapSize) {
@@ -22,7 +22,7 @@ public class MoveHandler {
         column = scanner.next().charAt(0) - 97;
 
         boolean movePlaced = false;
-        while (!(movePlaced)) {
+        while (!movePlaced) {
             if (isIllegal(mapSize, row, column)) {
                 LOGGER.info("Invalid move! (row, column):");
                 row = scanner.nextInt() - 1;
@@ -33,7 +33,7 @@ public class MoveHandler {
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
                 continue;
-            } else if (!(isConnected(moves, row, column))) {
+            } else if (!isConnected(moves, row, column)) {
                 LOGGER.info("Not connected! (row, column):");
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
@@ -49,7 +49,7 @@ public class MoveHandler {
         int column = (int) (Math.random() * mapSize);
 
         boolean movePlaced = false;
-        while (!(movePlaced)) {
+        while (!movePlaced) {
             if (isIllegal(mapSize, row, column)) {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
@@ -58,7 +58,7 @@ public class MoveHandler {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
                 continue;
-            } else if (!(isConnected(moves, row, column))) {
+            } else if (!isConnected(moves, row, column)) {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
                 continue;
@@ -76,13 +76,18 @@ public class MoveHandler {
         return moves[row][column] != ' ';
     }
 
-    public static boolean isConnected(char[][] moves,int row, int column) {
+    public static boolean isConnected(char[][] moves, int row, int column) {
         boolean connected = false;
-        for (int j = -1; j <= 1; j++){
+        for (int j = -1; j <= 1; j++) {
             for (int i = -1; i <= 1; i++) {
                 try {
-                    if (moves[row + i][column + j] != ' ') { connected = true; break; }
-                } catch (Exception ignored) {}
+                    if (moves[row + i][column + j] != ' ') {
+                        connected = true;
+                        break;
+                    }
+                } catch (Exception ignored) {
+                    continue;
+                }
             }
         }
         return connected;

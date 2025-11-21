@@ -6,6 +6,7 @@ import hu.nye.progtech.display.MapDisplayer;
 import hu.nye.progtech.domain.GameMap;
 import hu.nye.progtech.init.MapInit;
 import hu.nye.progtech.service.MoveHandler;
+import hu.nye.progtech.service.WinCondition;
 
 public class MainApp {
     public static void main(final String[] args) {
@@ -18,6 +19,7 @@ public class MainApp {
             mapDisplayer.displayMap(gameMap);
             MoveHandler.readMove(gameMap.getMoves(), gameMap.getMapSize());
             MoveHandler.botMove(gameMap.getMoves(), gameMap.getMapSize());
+            WinCondition.horizontalCheck(gameMap.getMoves(), gameMap.getMapSize(), 'x');
         }
     }
 }
