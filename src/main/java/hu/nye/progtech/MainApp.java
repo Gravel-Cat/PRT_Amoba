@@ -15,11 +15,13 @@ public class MainApp {
         final GameMap gameMap = mapInit.readMapDetails();
         final MapDisplayer mapDisplayer = new MapDisplayer();
 
-        while (1 == 1) {
-            mapDisplayer.displayMap(gameMap);
+        boolean win = false;
+        mapDisplayer.displayMap(gameMap.getMapSize(), gameMap.getMoves());
+        while (!win) {
             MoveHandler.readMove(gameMap.getMoves(), gameMap.getMapSize());
             MoveHandler.botMove(gameMap.getMoves(), gameMap.getMapSize());
-            WinCondition.horizontalCheck(gameMap.getMoves(), gameMap.getMapSize(), 'x');
+            mapDisplayer.displayMap(gameMap.getMapSize(), gameMap.getMoves());
+            win = WinCondition.winCheck(gameMap.getMoves(), gameMap.getMapSize(), 'x');
         }
     }
 }
