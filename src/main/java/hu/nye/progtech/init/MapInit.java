@@ -30,12 +30,12 @@ public final class MapInit {
 
         int middlePoint = Math.round((float) mapSize / 2) - 1;
         if (mapSize % 2 == 0) {
-            MoveHandler.setMove(moves, 'x', middlePoint, middlePoint);
-            MoveHandler.setMove(moves, 'o', middlePoint, middlePoint + 1);
-            MoveHandler.setMove(moves, 'o', middlePoint + 1, middlePoint);
-            MoveHandler.setMove(moves, 'x', middlePoint + 1, middlePoint + 1);
+            MoveHandler.setMove(moves, '+', middlePoint, middlePoint);
+            MoveHandler.setMove(moves, '+', middlePoint, middlePoint + 1);
+            MoveHandler.setMove(moves, '+', middlePoint + 1, middlePoint);
+            MoveHandler.setMove(moves, '+', middlePoint + 1, middlePoint + 1);
         } else {
-            MoveHandler.setMove(moves, 'x', middlePoint, middlePoint);
+            MoveHandler.setMove(moves, '+', middlePoint, middlePoint);
         }
 
         return new GameMap(mapSize, moves);

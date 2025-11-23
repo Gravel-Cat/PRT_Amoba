@@ -50,11 +50,7 @@ public class MoveHandler {
 
         boolean movePlaced = false;
         while (!movePlaced) {
-            if (isIllegal(mapSize, row, column)) {
-                row = (int) (Math.random() * mapSize);
-                column = (int) (Math.random() * mapSize);
-                continue;
-            } else if (isOccupied(moves, row, column)) {
+            if (isOccupied(moves, row, column)) {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
                 continue;
