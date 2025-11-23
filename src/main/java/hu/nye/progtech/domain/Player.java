@@ -6,6 +6,7 @@ public final class Player {
 
     public Player(final String name) {
         this.name = name;
+        this.setWins(0);
     }
 
     public void setWins(int wins) {

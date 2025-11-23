@@ -1,7 +1,7 @@
 package hu.nye.progtech.service;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+/*import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;*/
 
 public class WinCondition {
     //private static final Logger LOGGER = LoggerFactory.getLogger(MoveHandler.class);
@@ -89,6 +89,3 @@ public class WinCondition {
         return false;
     }
 }
-
-// 0 1 2 3 4
-// x x x x x

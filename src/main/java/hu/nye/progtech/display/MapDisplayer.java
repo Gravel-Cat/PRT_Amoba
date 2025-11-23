@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public class MapDisplayer {
     private static final Logger LOGGER = LoggerFactory.getLogger(MapDisplayer.class);
 
-    public void displayMap(final int mapSize, final char[][] moves) {
+    public void displayMap(final char[][] moves, final int mapSize) {
         final StringBuilder map = new StringBuilder();
         map.append("\n   ");
         for (int i = 0; i < mapSize; i++) {
