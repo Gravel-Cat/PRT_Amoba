@@ -17,24 +17,24 @@ public class MoveHandler {
         int row;
         int column;
 
-        LOGGER.info("Please enter your move's placement (row, column):");
+        LOGGER.info("\nPlease enter your move's placement (row, column):");
         row = scanner.nextInt() - 1;
         column = scanner.next().charAt(0) - 97;
 
         boolean movePlaced = false;
         while (!movePlaced) {
             if (isIllegal(mapSize, row, column)) {
-                LOGGER.info("Invalid move! (row, column):");
+                LOGGER.info("\nInvalid move! (row, column):");
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
                 continue;
             } else if (isOccupied(moves, row, column)) {
-                LOGGER.info("Already occupied! (row, column):");
+                LOGGER.info("\nAlready occupied! (row, column):");
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
                 continue;
             } else if (!isConnected(moves, row, column)) {
-                LOGGER.info("Not connected! (row, column):");
+                LOGGER.info("\nNot connected! (row, column):");
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
                 continue;

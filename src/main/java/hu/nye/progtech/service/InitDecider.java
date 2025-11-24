@@ -16,7 +16,7 @@ public class InitDecider {
     }
 
     public MapInit getInitInstance() {
-        LOGGER.info("Please choose a game option: \n1- New Game \n2- Load Game");
+        LOGGER.info("\nPlease choose a game option: \n1- New Game \n2- Load Game");
         int instance = scanner.nextInt();
         return switch (instance) {
             case 1 -> new NewMapInit(scanner);

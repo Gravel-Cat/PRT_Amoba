@@ -16,7 +16,7 @@ public class PlayerInit {
     }
 
     public Player readPlayerDetails() {
-        LOGGER.info("Please enter your name:");
+        LOGGER.info("\nPlease enter your name:");
         String name = scanner.next();
         return new Player(name);
     }

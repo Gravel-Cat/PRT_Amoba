@@ -17,9 +17,9 @@ public final class NewMapInit implements MapInit {
 
     @Override
     public GameMap readMapDetails() {
-        int mapSize = getDetailsInInt("Please enter map size (5-25):");
+        int mapSize = getDetailsInInt("\nPlease enter map size (5-25):");
         while (mapSize < 5 || mapSize > 25) {
-            mapSize = getDetailsInInt("Invalid size! Please enter map size (5-25):");
+            mapSize = getDetailsInInt("\nInvalid size! Please enter map size (5-25):");
         }
 
         final char[][] moves = new char[mapSize][mapSize];

@@ -8,11 +8,11 @@ public class GameState {
 
     public static boolean isFinished(char[][] moves, int mapSize) {
         if(playerWon(moves, mapSize)) {
-            LOGGER.info("Congrats, you won!");
+            LOGGER.info("\nCongrats, you won!");
             return true;
         }
         if(botWon(moves, mapSize)) {
-            LOGGER.info("Game over, the bot won!");
+            LOGGER.info("\nGame over, the bot won!");
             return true;
         }
         return false;
