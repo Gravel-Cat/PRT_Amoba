@@ -1,11 +1,11 @@
 package hu.nye.progtech.service;
 
+import java.util.Scanner;
+
 import hu.nye.progtech.init.MapInit;
 import hu.nye.progtech.init.NewMapInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Scanner;
 
 public class InitDecider {
     private static final Logger LOGGER = LoggerFactory.getLogger(InitDecider.class);

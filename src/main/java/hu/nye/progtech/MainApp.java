@@ -17,10 +17,10 @@ public class MainApp {
         final PlayerInit playerInit = new PlayerInit(scanner);
         final InitDecider initDecider = new InitDecider(scanner);
         final MapDisplayer mapDisplayer = new MapDisplayer();
-        final MapInit MapInit = initDecider.getInitInstance();
 
+        final MapInit mapInit = initDecider.getInitInstance();
         final Player player = playerInit.readPlayerDetails();
-        final GameMap gameMap = MapInit.readMapDetails();
+        final GameMap gameMap = mapInit.readMapDetails();
 
         final GameLoop gameLoop = new GameLoop(scanner, mapDisplayer);
 
