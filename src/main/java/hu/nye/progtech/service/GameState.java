@@ -1,14 +1,17 @@
 package hu.nye.progtech.service;
 
+import hu.nye.progtech.domain.Player;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GameState {
     private static final Logger LOGGER = LoggerFactory.getLogger(GameState.class);
 
-    public static boolean isFinished(char[][] moves, int mapSize) {
+    public static boolean isFinished(char[][] moves, int mapSize, Player player) {
         if(playerWon(moves, mapSize)) {
             LOGGER.info("\nCongrats, you won!");
+            player.setWins(player.getWins()+1);
             return true;
         }
         if(botWon(moves, mapSize)) {

@@ -16,15 +16,15 @@ public class MainApp {
         final Scanner scanner = new Scanner(System.in);
         final PlayerInit playerInit = new PlayerInit(scanner);
         final InitDecider initDecider = new InitDecider(scanner);
-        final MapInit MapInit = initDecider.getInitInstance();
         final MapDisplayer mapDisplayer = new MapDisplayer();
+        final MapInit MapInit = initDecider.getInitInstance();
 
         final Player player = playerInit.readPlayerDetails();
         final GameMap gameMap = MapInit.readMapDetails();
 
-        final GameLoop gameLoop = new GameLoop(mapDisplayer);
+        final GameLoop gameLoop = new GameLoop(scanner, mapDisplayer);
 
-        gameLoop.startGame(new Game(gameMap, player));
+        gameLoop.gameMenu(new Game(gameMap, player));
         scanner.close();
     }
 }
