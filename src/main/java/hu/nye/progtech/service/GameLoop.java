@@ -6,6 +6,9 @@ import hu.nye.progtech.display.MapDisplayer;
 import hu.nye.progtech.domain.Game;
 import hu.nye.progtech.domain.GameMap;
 import hu.nye.progtech.domain.Player;
+import hu.nye.progtech.init.MapInit;
+import hu.nye.progtech.init.NewMapInit;
+import hu.nye.progtech.init.PlayerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +23,11 @@ public class GameLoop {
         this.mapDisplayer = mapDisplayer;
     }
 
-    public void gameMenu(Game game) {
-        startGame(game);
+    public void gameMenu(InitDecider initDecider, PlayerInit playerInit) {
+        MapInit mapInit = initDecider.getInitInstance();
+        Player player = playerInit.readPlayerDetails();
+        GameMap gameMap = mapInit.readMapDetails();
+        startGame(new Game(gameMap, player));
 
         int valid = 0;
         while (valid != 1) {
@@ -29,7 +35,9 @@ public class GameLoop {
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
-                    gameMenu(game);
+                    mapInit = new NewMapInit(scanner);
+                    gameMap = mapInit.readMapDetails();
+                    startGame(new Game(gameMap, player));
                     break;
                 case 2:
                     valid = 1;
@@ -43,18 +51,42 @@ public class GameLoop {
 
     public void startGame(Game game) {
         Player player = game.getPlayer();
+        String playerName = player.getName();
+        int playerWins = player.getWins();
         GameMap gameMap = game.getGameMap();
         char[][] moves = gameMap.getMoves();
         int mapSize = gameMap.getMapSize();
 
-        mapDisplayer.displayMap(moves, mapSize);
-        while (!GameState.isFinished(moves, mapSize, player)) {
-            LOGGER.info("\n{}'s turn", player.getName());
-            MoveHandler.readMove(moves, mapSize);
-            LOGGER.info("\nBot's turn");
-            MoveHandler.botMove(moves, mapSize);
+        boolean gameRunning = true;
+        while (gameRunning) {
             mapDisplayer.displayMap(moves, mapSize);
+            LOGGER.info("\n{}'s turn", playerName);
+            int option = 0;
+            while(option < 1 || option > 3) {
+                LOGGER.info("\nChoose an option: \n1- Make a move \n2- Save game \n3- Quit game");
+                option = scanner.nextInt();
+            }
+            switch (option) {
+                case 1:
+                    MoveHandler.readMove(moves, mapSize);
+                    gameRunning = GameState.isRunning(moves, mapSize);
+                    if(!gameRunning) {
+                        mapDisplayer.displayMap(moves, mapSize);
+                        player.setWins(player.getWins() + 1);
+                        LOGGER.info("\nYour wins: {}", ++playerWins);
+                        break;
+                    }
+                    if(GameState.noMoreMoves(moves, mapSize)) {
+                        break;
+                    }
+                    mapDisplayer.displayMap(moves, mapSize);
+                    LOGGER.info("\nBot's turn");
+                    MoveHandler.botMove(moves, mapSize);
+                    break;
+                case 3:
+                    gameRunning = false;
+                    break;
+            }
         }
-        LOGGER.info("\nYour wins: {}", player.getWins());
     }
 }
