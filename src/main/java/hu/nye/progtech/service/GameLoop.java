@@ -62,7 +62,7 @@ public class GameLoop {
             mapDisplayer.displayMap(moves, mapSize);
             LOGGER.info("\n{}'s turn", playerName);
             int option = 0;
-            while(option < 1 || option > 3) {
+            while (option < 1 || option > 3) {
                 LOGGER.info("\nChoose an option: \n1- Make a move \n2- Save game \n3- Quit game");
                 option = scanner.nextInt();
             }
@@ -70,13 +70,14 @@ public class GameLoop {
                 case 1:
                     MoveHandler.readMove(moves, mapSize);
                     gameRunning = GameState.isRunning(moves, mapSize);
-                    if(!gameRunning) {
+                    if (!gameRunning) {
                         mapDisplayer.displayMap(moves, mapSize);
                         player.setWins(player.getWins() + 1);
-                        LOGGER.info("\nYour wins: {}", ++playerWins);
+                        playerWins++;
+                        LOGGER.info("\nYour wins: {}", playerWins);
                         break;
                     }
-                    if(GameState.noMoreMoves(moves, mapSize)) {
+                    if (GameState.noMoreMoves(moves, mapSize)) {
                         break;
                     }
                     mapDisplayer.displayMap(moves, mapSize);
@@ -85,6 +86,8 @@ public class GameLoop {
                     break;
                 case 3:
                     gameRunning = false;
+                    break;
+                default:
                     break;
             }
         }

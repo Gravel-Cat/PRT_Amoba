@@ -21,7 +21,7 @@ public class GameState {
     public static boolean noMoreMoves(char[][] moves, int mapSize) {
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if(moves[i][j] == ' ') {
+                if (moves[i][j] == ' ') {
                     return false;
                 }
             }
