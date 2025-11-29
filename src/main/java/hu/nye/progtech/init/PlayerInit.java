@@ -18,6 +18,6 @@ public class PlayerInit {
     public Player readPlayerDetails() {
         LOGGER.info("\nPlease enter your name:");
         String name = scanner.next();
-        return new Player(name);
+        return new Player(name, 0);
     }
 }

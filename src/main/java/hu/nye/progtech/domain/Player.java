@@ -1,12 +1,16 @@
 package hu.nye.progtech.domain;
 
 public final class Player {
-    private final String name;
+    private String name;
     private int wins;
 
-    public Player(final String name) {
+    public Player(final String name, final int wins) {
         this.name = name;
-        this.setWins(0);
+        this.wins = wins;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setWins(int wins) {

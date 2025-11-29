@@ -1,8 +1,11 @@
 package hu.nye.progtech.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import hu.nye.progtech.domain.Game;
 import hu.nye.progtech.domain.GameMap;
@@ -40,5 +43,29 @@ public class FileHandler {
             String error = Arrays.toString(e.getStackTrace());
             LOGGER.error(error);
         }
+    }
+
+    public static Game loadFile() {
+        File file = new File("savefile.txt");
+        try (Scanner fileScanner = new Scanner(file)){
+            String playerName = fileScanner.nextLine();
+            int playerWins = fileScanner.nextInt();
+            Player player = new Player (playerName, playerWins);
+            int mapSize = fileScanner.nextInt();
+            char[][] moves = new char[mapSize][mapSize];
+            for (int i = 0; i < mapSize; i++) {
+                for (int j = 0; j < mapSize; j++) {
+                    moves[i][j] = fileScanner.next(".").charAt(0);
+                }
+            }
+            GameMap gameMap = new GameMap(mapSize, moves);
+            return new Game(gameMap, player);
+
+        } catch (FileNotFoundException e) {
+            LOGGER.error("A file error has occurred!");
+            String error = Arrays.toString(e.getStackTrace());
+            LOGGER.error(error);
+        }
+        return null;
     }
 }
