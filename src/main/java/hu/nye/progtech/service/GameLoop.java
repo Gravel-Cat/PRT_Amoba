@@ -43,7 +43,6 @@ public class GameLoop {
                     valid = 1;
                     break;
                 default:
-                    valid = 0;
                     break;
             }
         }
@@ -83,6 +82,9 @@ public class GameLoop {
                     mapDisplayer.displayMap(moves, mapSize);
                     LOGGER.info("\nBot's turn");
                     MoveHandler.botMove(moves, mapSize);
+                    break;
+                case 2:
+                    FileHandler.saveFile(game);
                     break;
                 case 3:
                     gameRunning = false;
