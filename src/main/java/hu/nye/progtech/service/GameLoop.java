@@ -7,8 +7,6 @@ import hu.nye.progtech.domain.Game;
 import hu.nye.progtech.domain.GameMap;
 import hu.nye.progtech.domain.Player;
 import hu.nye.progtech.init.MapInit;
-import hu.nye.progtech.init.NewMapInit;
-import hu.nye.progtech.init.PlayerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,10 +21,10 @@ public class GameLoop {
         this.mapDisplayer = mapDisplayer;
     }
 
-    public void gameMenu(InitDecider initDecider, PlayerInit playerInit) {
-        MapInit mapInit = initDecider.getInitInstance();
-        Player player = playerInit.readPlayerDetails();
-        GameMap gameMap = mapInit.readMapDetails();
+    public void gameMenu(Game game, MapInit mapInit) {
+        Player player = game.getPlayer();
+        GameMap gameMap = game.getGameMap();
+
         startGame(new Game(gameMap, player));
 
         int valid = 0;
@@ -35,7 +33,6 @@ public class GameLoop {
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
-                    mapInit = new NewMapInit(scanner);
                     gameMap = mapInit.readMapDetails();
                     startGame(new Game(gameMap, player));
                     break;

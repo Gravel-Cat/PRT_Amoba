@@ -52,6 +52,7 @@ public class FileHandler {
             int playerWins = fileScanner.nextInt();
             Player player = new Player (playerName, playerWins);
             int mapSize = fileScanner.nextInt();
+
             char[][] moves = new char[mapSize][mapSize];
             for (int i = 0; i < mapSize; i++) {
                 for (int j = 0; j < mapSize; j++) {
