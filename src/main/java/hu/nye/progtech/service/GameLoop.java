@@ -74,6 +74,7 @@ public class GameLoop {
                         break;
                     }
                     if (GameState.noMoreMoves(moves, mapSize)) {
+                        gameRunning = false;
                         break;
                     }
                     mapDisplayer.displayMap(moves, mapSize);

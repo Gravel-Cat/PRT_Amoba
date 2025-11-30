@@ -24,7 +24,7 @@ public final class MapInit {
         final char[][] moves = new char[mapSize][mapSize];
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                MoveHandler.setMove(moves, ' ', i, j);
+                MoveHandler.setMove(moves, '~', i, j);
             }
         }
 

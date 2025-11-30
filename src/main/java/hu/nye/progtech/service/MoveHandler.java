@@ -33,7 +33,7 @@ public class MoveHandler {
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
                 continue;
-            } else if (!isConnected(moves, row, column)) {
+            } else if (isNotConnected(moves, row, column)) {
                 LOGGER.info("\nNot connected! (row, column):");
                 row = scanner.nextInt() - 1;
                 column = scanner.next().charAt(0) - 97;
@@ -54,7 +54,7 @@ public class MoveHandler {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
                 continue;
-            } else if (!isConnected(moves, row, column)) {
+            } else if (isNotConnected(moves, row, column)) {
                 row = (int) (Math.random() * mapSize);
                 column = (int) (Math.random() * mapSize);
                 continue;
@@ -69,23 +69,27 @@ public class MoveHandler {
     }
 
     public static boolean isOccupied(char[][] moves, int row, int column) {
-        return moves[row][column] != ' ';
+        return moves[row][column] == '+' ||
+                moves[row][column] == 'x' ||
+                moves[row][column] == 'o';
     }
 
-    public static boolean isConnected(char[][] moves, int row, int column) {
-        boolean connected = false;
+    public static boolean isNotConnected(char[][] moves, int row, int column) {
+        boolean notConnected = true;
         for (int j = -1; j <= 1; j++) {
             for (int i = -1; i <= 1; i++) {
                 try {
-                    if (moves[row + i][column + j] != ' ') {
-                        connected = true;
+                    if (moves[row + i][column + j] == '+' ||
+                            moves[row + i][column + j] == 'x' ||
+                            moves[row + i][column + j] == 'o') {
+                        notConnected = false;
                         break;
                     }
                 } catch (Exception ignored) {
-                    continue;
+                    notConnected = true;
                 }
             }
         }
-        return connected;
+        return notConnected;
     }
 }
