@@ -55,8 +55,9 @@ public class FileHandler {
 
             char[][] moves = new char[mapSize][mapSize];
             for (int i = 0; i < mapSize; i++) {
+                String line = fileScanner.next();
                 for (int j = 0; j < mapSize; j++) {
-                    moves[i][j] = fileScanner.next(".").charAt(0);
+                    moves[i][j] = line.charAt(j);
                 }
             }
             GameMap gameMap = new GameMap(mapSize, moves);
