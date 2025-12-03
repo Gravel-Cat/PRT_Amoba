@@ -47,10 +47,10 @@ public class FileHandler {
 
     public static Game loadFile() {
         File file = new File("savefile.txt");
-        try (Scanner fileScanner = new Scanner(file)){
+        try (Scanner fileScanner = new Scanner(file)) {
             String playerName = fileScanner.nextLine();
             int playerWins = fileScanner.nextInt();
-            Player player = new Player (playerName, playerWins);
+            Player player = new Player(playerName, playerWins);
             int mapSize = fileScanner.nextInt();
 
             char[][] moves = new char[mapSize][mapSize];
